@@ -47,13 +47,47 @@ router.get('/api/get_pokemon/:pokemon', (req, res) => {
 });
 
 router.get('/api/get_list/:from/:size', (req, res) => {
-    let from = req.params.from;
-    let size = req.params.size;
+    from = req.params.from;
+    size = req.params.size;
+    //console.log(from + size);
+     
     if(/[0-9]+/.test(from) && /[0-9]+/.test(size)){
-        console.log("valido");
-        res.json({
-            status: '200'
+        to   = parseInt(from) + parseInt(size);
+        array_pokemon = [];
+        while(parseInt(from) <= to ){
+            array_pokemon.push("https://pokeapi.co/api/v2/pokemon/" + from + "/");
+            ++from;
+        }
+
+        pok.resource(  array_pokemon )
+        .then(function(response){
+           // console.log(response.length);
+            let pokemon_list = [];
+            let size = response.length;
+            i = 0;
+            
+            while(i < size){
+                pokemon_list.push({
+                    id: response[i].id,
+                    name: response[i].name, 
+                    sprites: {
+                        front_shine: response[i].sprites.front_shiny,
+                        back_shiny: response[i].sprites.back_shiny
+                    },
+                 moves: response[i].moves[0].move 
+                });
+                i++;
+            }
+
+            res.json(pokemon_list);
+        })
+        .catch(function(error){
+            res.json({
+                status: '400',
+                message: error.message
+            });
         });
+        
     }else{
         res.json({
             status: '400',
@@ -64,13 +98,9 @@ router.get('/api/get_list/:from/:size', (req, res) => {
 
 
 
-
-
 router.get('*', (req, res) =>{
     res.status(404).redirect(__dirname);
 });
-
-
 
 
 module.exports = router;
