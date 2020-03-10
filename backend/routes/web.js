@@ -99,7 +99,7 @@ router.get('/api/get_list/:from/:size', (req, res) => {
 
 router.get('/api/get_random_pokemon/', (req, res) => {
     const num = Math.round(Math.random() * (800 - 1)) + 1
-         pok.getPokemonByName (num)
+         pok.getPokemonByName (parseInt(num))
          .then(function(response) {
            res.json({
                id: response.id,
