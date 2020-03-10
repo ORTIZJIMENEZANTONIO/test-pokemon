@@ -1,17 +1,25 @@
 {
-  "name": "test",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "this project contain pokemons",
   "main": "index.js",
-  "scripts": {
-    "test": "nodemon src/index.js"
-  },
-  "keywords": [
-    "test-pokemon"
-  ],
-  "author": "José Antonio Ortiz",
-  "license": "ISC",
   "dependencies": {
-    "pokedex-promise-v2": "^3.2.0"
-  }
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "pokedex-promise-v2": "^3.2.0",
+    "vue": "^2.6.11",
+    "vue-cli": "^2.9.6",
+    "vue-loader": "^15.9.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "test": "nodemon src/index.js",
+    "webpack": "webpack --mode development --watch"
+  },
+  "author": "José Antonio Ortiz Jiménez",
+  "license": "ISC"
 }

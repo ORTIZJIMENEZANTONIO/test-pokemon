@@ -49,7 +49,6 @@ router.get('/api/get_pokemon/:pokemon', (req, res) => {
 router.get('/api/get_list/:from/:size', (req, res) => {
     from = req.params.from;
     size = req.params.size;
-    //console.log(from + size);
      
     if(/[0-9]+/.test(from) && /[0-9]+/.test(size)){
         to   = parseInt(from) + parseInt(size);
@@ -98,9 +97,26 @@ router.get('/api/get_list/:from/:size', (req, res) => {
 
 
 
-router.get('*', (req, res) =>{
-    res.status(404).redirect(__dirname);
-});
+router.get('/api/get_random_pokemon/', (req, res) => {
+    const num = Math.round(Math.random() * (800 - 1)) + 1
+         pok.getPokemonByName (num)
+         .then(function(response) {
+           res.json({
+               id: response.id,
+               name: response.name, 
+               sprites: {
+                   front_shine: response.sprites.front_shiny,
+                   back_shiny: response.sprites.back_shiny
+               },
+               moves: response.moves[0].move
+           });
+         })
+         .catch(function(error) {
+           res.status(400).send(error);
+         });
+    
+ });
+
 
 
 module.exports = router;
