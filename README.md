@@ -1,7 +1,7 @@
 #Pokemon-test
 
 
-**Pre requirements:**
+**Requirements:**
 - installed nodejs
 - installed npm
 
