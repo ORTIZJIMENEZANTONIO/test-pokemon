@@ -12,8 +12,8 @@ to veify if it run, in console you must see the message "running in the port 500
 **Use Functions**
 - Get pokemon
   To use this function, you need to use /api/get_pokemon/:pokemon
-  where :pokemon is the name or id pokemon, this param must be integer greater than or equals to 0 (in id case) or must be string made up width alphabet in upper or lowwer, excluding special character like $%&$&ñ etc.
-  In right case yhe function will return status 200 and json with:
+  where :pokemon is the name or id pokemon, this param must be integer greater than or equals to 0 (in id case) or must be string made up width alphabet in upper or lower, excluding special character like $%&$&ñ etc.
+  In right case the function will return status 200 and json with:
    - id
    - name
    - sprite (front and back)
